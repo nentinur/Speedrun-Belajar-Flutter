@@ -12,85 +12,23 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Belajar Guys"),
+          title: Text("Belajar lagi"),
         ),
-        body: Column(
-          // Column mengatur widget tersusun menumpuk dari atas ke bawah, kalo mau menyamping pakainya Row
-          mainAxisAlignment:
-              MainAxisAlignment.center, // mengatur dari atas ke tengah
-          crossAxisAlignment: CrossAxisAlignment.start, // rata kiri
-          children: [
-            Center(
-                child: Container(
-                    color: Colors.lightBlue,
-                    width: 200,
-                    height: 50,
-                    child: Text(
-                      "sebenernya saya capek, tapi yaa gimana lagi, terpaksa harus belajar ini",
-                      maxLines: 2,
-                      overflow: TextOverflow.clip,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white, fontStyle: FontStyle.italic),
-                    ))),
-            Center(
-                child: Container(
-                    color: Colors.lightBlue,
-                    width: 200,
-                    height: 50,
-                    child: Text(
-                      "sebenernya saya capek, tapi yaa gimana lagi, terpaksa harus belajar ini",
-                      maxLines: 2,
-                      overflow: TextOverflow.clip,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white, fontStyle: FontStyle.italic),
-                    ))),
-            Center(
-                child: Container(
-                    color: Colors.lightBlue,
-                    width: 200,
-                    height: 50,
-                    child: Text(
-                      "sebenernya saya capek, tapi yaa gimana lagi, terpaksa harus belajar ini",
-                      maxLines: 2,
-                      overflow: TextOverflow.clip,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white, fontStyle: FontStyle.italic),
-                    ))),
-            Row(
-              children: [
-                Container(
-                  color: Colors.blueGrey,
-                  width: 70,
-                  height: 50,
-                  child: Text(
-                    "Oi",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-                Container(
-                  color: Colors.blueGrey,
-                  width: 70,
-                  height: 50,
-                  child: Text(
-                    "Oi",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-                Container(
-                  color: Colors.blueGrey,
-                  width: 70,
-                  height: 50,
-                  child: Text(
-                    "Oi",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                )
-              ],
-            )
-          ],
+        body: Container(
+          color: Colors.greenAccent,
+          margin: EdgeInsets.all(10),
+          padding: EdgeInsets.fromLTRB(10, 20, 30, 40),
+          child: Container(
+              color: Colors.blueAccent,
+              padding: EdgeInsets.only(top: 20, left: 30),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: <Color>[Colors.red, Colors.white])),
+              )),
         ),
       ),
     );
