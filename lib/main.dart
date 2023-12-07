@@ -4,39 +4,29 @@ void main() {
   runApp(const MyApp());
 }
 
-// anonymus method adalah method yang tidak memiliki nama
-// kita menggunakan anonymus method saat method hanya dipanggil sekali, contoh hanya untuk 1 tombol
-
-class MyApp extends StatefulWidget {
+// karena saya males download font nyam jadi saya tulis langkah2nya saja
+// menambahkan jenis font: tambah folder [fonts], masukkan font yang kita miliki ke dalam folder fonts
+// kemudian di pubspec.yaml, tambahkan font yang kita miliki tadi
+// lalu atur TextStyle(fontFamily: "NamaFont")
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  String message = "belum ditekan";
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Anonymus Method"),
+          title: Text("TextStyle"),
         ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(message),
-              ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      message = "tombol ini ditekan";
-                    });
-                  },
-                  child: Text("Tekan saya"))
-            ],
+          child: Text(
+            "Ini adalah text",
+            style: TextStyle(
+                fontSize: 30,
+                decoration: TextDecoration.overline,
+                decorationColor: Colors.red,
+                decorationThickness: 5,
+                decorationStyle: TextDecorationStyle.wavy),
           ),
         ),
       ),
