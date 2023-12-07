@@ -1,12 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
 }
-
-// List View berbeda dengan column
-// column, jika monitor tiak cukup untuk menampilkan widget2 tersebut, dia akan error
-// sedangkan pada listview, dia bisa di scroll
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -16,43 +14,27 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  List<Widget> widgets = [];
-  int counter = 1;
+  Random random = Random();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text("List View")),
-        body: ListView(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        widgets.add(Text(
-                          "data ke-" + counter.toString(),
-                          style: TextStyle(fontSize: 35),
-                        ));
-                        counter++;
-                      });
-                    },
-                    child: Text("Tambah data")),
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        widgets.removeLast();
-                        counter--;
-                      });
-                    },
-                    child: Text("Hapus data"))
-              ],
+        appBar: AppBar(
+          title: Text("Animated Container"),
+        ),
+        body: Center(
+          child: GestureDetector(
+            onTap: () {
+              setState(() {});
+            },
+            child: AnimatedContainer(
+              color: Color.fromARGB(255, random.nextInt(256),
+                  random.nextInt(256), random.nextInt(256)),
+              duration: Duration(seconds: 1),
+              width: 50.0 + random.nextInt(101),
+              height: 50.0 + random.nextInt(101),
             ),
-            Column(
-              children: widgets,
-            )
-          ],
+          ),
         ),
       ),
     );
