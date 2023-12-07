@@ -4,32 +4,45 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+// statefull widget => widget yang punya keadaan, misal ada tombol yang bisa mengubah tampilan
+// kalo stateless widget pake "stl", kalo statefull pake "stf"
+
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int number = 0;
+  void tekanTombol() {
+    setState(() {
+      number = number + 1;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Belajar lagi"),
+          title: Text("belajar statefull widget"),
         ),
-        body: Container(
-          color: Colors.greenAccent,
-          margin: EdgeInsets.all(10),
-          padding: EdgeInsets.fromLTRB(10, 20, 30, 40),
-          child: Container(
-              color: Colors.blueAccent,
-              padding: EdgeInsets.only(top: 20, left: 30),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: <Color>[Colors.red, Colors.white])),
-              )),
-        ),
+        body: Center(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              number.toString(),
+              style: TextStyle(fontSize: 10 + number.toDouble()),
+            ),
+            ElevatedButton(
+              child: Text("Tambah"),
+              onPressed: tekanTombol,
+            )
+          ],
+        )),
       ),
     );
   }
