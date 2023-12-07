@@ -4,8 +4,8 @@ void main() {
   runApp(const MyApp());
 }
 
-// statefull widget => widget yang punya keadaan, misal ada tombol yang bisa mengubah tampilan
-// kalo stateless widget pake "stl", kalo statefull pake "stf"
+// anonymus method adalah method yang tidak memiliki nama
+// kita menggunakan anonymus method saat method hanya dipanggil sekali, contoh hanya untuk 1 tombol
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -15,34 +15,30 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int number = 0;
-  void tekanTombol() {
-    setState(() {
-      number = number + 1;
-    });
-  }
+  String message = "belum ditekan";
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("belajar statefull widget"),
+          title: Text("Anonymus Method"),
         ),
         body: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              number.toString(),
-              style: TextStyle(fontSize: 10 + number.toDouble()),
-            ),
-            ElevatedButton(
-              child: Text("Tambah"),
-              onPressed: tekanTombol,
-            )
-          ],
-        )),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(message),
+              ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      message = "tombol ini ditekan";
+                    });
+                  },
+                  child: Text("Tekan saya"))
+            ],
+          ),
+        ),
       ),
     );
   }
