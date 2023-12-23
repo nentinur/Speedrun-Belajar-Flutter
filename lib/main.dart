@@ -6,6 +6,8 @@ void main() {
   runApp(const MyApp());
 }
 
+// untuk mengatur ukuran space kosong
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -14,27 +16,41 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Image Widget"),
+          title: Text("Spacer Widget"),
         ),
         body: Center(
-          child: Container(
-            color: Colors.amber,
-            width: 200,
-            height: 200,
-            padding: EdgeInsets.all(3),
-            child: Image(
-              /// GUNAKAN GAMBAR DARI ASSETS
-              image: AssetImage("assets/levi.png"),
-              fit: BoxFit.contain,
-
-              /// AMBIL GAMBAR DARI INTERNET
-              //   image: NetworkImage(
-              //       "https://e0.pxfuel.com/wallpapers/201/290/desktop-wallpaper-muichiro-tokito-demonslayer-anime-latest.jpg"),
-              //   fit: BoxFit.contain,
-              //   repeat: ImageRepeat.repeat,
+            child: Row(
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Spacer(
+              flex: 1,
             ),
-          ),
-        ),
+            Container(
+              width: 80,
+              height: 80,
+              color: Colors.red,
+            ),
+            Spacer(
+              flex: 2,
+            ),
+            Container(
+              width: 80,
+              height: 80,
+              color: Colors.green,
+            ),
+            Spacer(
+              flex: 3,
+            ),
+            Container(
+              width: 80,
+              height: 80,
+              color: Colors.blue,
+            ),
+            Spacer(
+              flex: 2,
+            )
+          ],
+        )),
       ),
     );
   }
