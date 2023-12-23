@@ -6,10 +6,6 @@ void main() {
   runApp(const MyApp());
 }
 
-// column = berjejer ke bawah
-// row = berjejer ke samping
-// stack = berjejer ke depan = seperti layer
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -18,103 +14,26 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Stack & Align"),
+          title: Text("Image Widget"),
         ),
-        body: Stack(
-          children: [
-            //layer 1: background
-            Column(
-              children: [
-                Flexible(
-                    flex: 1,
-                    child: Row(
-                      children: [
-                        Flexible(
-                            child: Container(
-                          color: Colors.white,
-                        )),
-                        Flexible(
-                            child: Container(
-                          color: Colors.grey,
-                        ))
-                      ],
-                    )),
-                Flexible(
-                    flex: 1,
-                    child: Row(
-                      children: [
-                        Flexible(
-                            child: Container(
-                          color: Colors.grey,
-                        )),
-                        Flexible(
-                            child: Container(
-                          color: Colors.white,
-                        ))
-                      ],
-                    ))
-              ],
+        body: Center(
+          child: Container(
+            color: Colors.amber,
+            width: 200,
+            height: 200,
+            padding: EdgeInsets.all(3),
+            child: Image(
+              /// GUNAKAN GAMBAR DARI ASSETS
+              image: AssetImage("assets/levi.png"),
+              fit: BoxFit.contain,
+
+              /// AMBIL GAMBAR DARI INTERNET
+              //   image: NetworkImage(
+              //       "https://e0.pxfuel.com/wallpapers/201/290/desktop-wallpaper-muichiro-tokito-demonslayer-anime-latest.jpg"),
+              //   fit: BoxFit.contain,
+              //   repeat: ImageRepeat.repeat,
             ),
-            // layer 2
-            ListView(
-              children: [
-                Container(
-                    margin: EdgeInsets.all(10),
-                    child: Text(
-                      "ini adalah text yang ada di lapisan tengah dari stack",
-                      style: TextStyle(fontSize: 30),
-                    )),
-                Container(
-                    margin: EdgeInsets.all(10),
-                    child: Text(
-                      "ini adalah text yang ada di lapisan tengah dari stack",
-                      style: TextStyle(fontSize: 30),
-                    )),
-                Container(
-                    margin: EdgeInsets.all(10),
-                    child: Text(
-                      "ini adalah text yang ada di lapisan tengah dari stack",
-                      style: TextStyle(fontSize: 30),
-                    )),
-                Container(
-                    margin: EdgeInsets.all(10),
-                    child: Text(
-                      "ini adalah text yang ada di lapisan tengah dari stack",
-                      style: TextStyle(fontSize: 30),
-                    )),
-                Container(
-                    margin: EdgeInsets.all(10),
-                    child: Text(
-                      "ini adalah text yang ada di lapisan tengah dari stack",
-                      style: TextStyle(fontSize: 30),
-                    )),
-                Container(
-                    margin: EdgeInsets.all(10),
-                    child: Text(
-                      "ini adalah text yang ada di lapisan tengah dari stack",
-                      style: TextStyle(fontSize: 30),
-                    )),
-                Container(
-                    margin: EdgeInsets.all(10),
-                    child: Text(
-                      "ini adalah text yang ada di lapisan tengah dari stack",
-                      style: TextStyle(fontSize: 30),
-                    )),
-                Container(
-                    margin: EdgeInsets.all(10),
-                    child: Text(
-                      "ini adalah text yang ada di lapisan tengah dari stack",
-                      style: TextStyle(fontSize: 30),
-                    )),
-              ],
-            ),
-            // layer 3: button
-            Align(
-                // align untuk mengatur posisi, atas = -1, bawah 1, tengah 0, kanan = 1, kiri = -1
-                alignment: Alignment(0.8, 0.9),
-                child:
-                    ElevatedButton(onPressed: null, child: Text("ini tombol")))
-          ],
+          ),
         ),
       ),
     );
