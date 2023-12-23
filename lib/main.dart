@@ -6,51 +6,121 @@ void main() {
   runApp(const MyApp());
 }
 
-// untuk mengatur ukuran space kosong
-
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Color color1 = Colors.red;
+  Color color2 = Colors.amber;
+  Color targetColor = Colors.black;
+  bool isAccepted = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Spacer Widget"),
+          title: Text("Dragable"),
         ),
-        body: Center(
-            child: Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Spacer(
-              flex: 1,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Draggable<Color>(
+                  data: color1,
+                  child: SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: Material(
+                      color: color1,
+                      shape: StadiumBorder(),
+                      elevation: 3,
+                    ),
+                  ),
+                  childWhenDragging: const SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: Material(
+                      color: Colors.black26,
+                      shape: StadiumBorder(),
+                    ),
+                  ),
+                  feedback: SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: Material(
+                      color: color1.withOpacity(0.5),
+                      shape: StadiumBorder(),
+                      elevation: 3,
+                    ),
+                  ),
+                ),
+                Draggable<Color>(
+                  data: color2,
+                  child: SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: Material(
+                      color: color2,
+                      shape: StadiumBorder(),
+                      elevation: 3,
+                    ),
+                  ),
+                  childWhenDragging: const SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: Material(
+                      color: Colors.black26,
+                      shape: StadiumBorder(),
+                    ),
+                  ),
+                  feedback: SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: Material(
+                      color: color2.withOpacity(0.5),
+                      shape: StadiumBorder(),
+                      elevation: 3,
+                    ),
+                  ),
+                ),
+              ],
             ),
-            Container(
-              width: 80,
-              height: 80,
-              color: Colors.red,
-            ),
-            Spacer(
-              flex: 2,
-            ),
-            Container(
-              width: 80,
-              height: 80,
-              color: Colors.green,
-            ),
-            Spacer(
-              flex: 3,
-            ),
-            Container(
-              width: 80,
-              height: 80,
-              color: Colors.blue,
-            ),
-            Spacer(
-              flex: 2,
+            DragTarget<Color>(
+              onWillAccept: (value) => true,
+              onAccept: (value) {
+                isAccepted = true;
+                targetColor = value;
+              },
+              builder: (context, candidates, rejected) {
+                return (isAccepted)
+                    ? SizedBox(
+                        width: 100,
+                        height: 100,
+                        child: Material(
+                          color: targetColor,
+                          shape: StadiumBorder(),
+                          elevation: 3,
+                        ),
+                      )
+                    : SizedBox(
+                        width: 100,
+                        height: 100,
+                        child: Material(
+                          color: Colors.black26,
+                          shape: StadiumBorder(),
+                          elevation: 3,
+                        ),
+                      );
+              },
             )
           ],
-        )),
+        ),
       ),
     );
   }
