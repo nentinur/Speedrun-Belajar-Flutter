@@ -4,40 +4,38 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  TextEditingController controller = TextEditingController(text: "");
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.green,
+        appBar: AppBar(title: Text("text field")),
         body: Container(
-          margin: EdgeInsets.all(10),
-          child: ListView(
+          margin: EdgeInsets.all(20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              buildCard(Icons.account_box, "Account Box"),
-              buildCard(Icons.adb, "Android"),
+              TextField(
+                // obscureText: true, =>> untuk membuat tampilan text seperti password
+                // maxLength: 5, =>> untuk membatasi jumlah input (contoh: hanya bisa menulis 5 karakter)
+                // maxLines: 1, =>> jumlah maksimal baris
+                onChanged: (value) {
+                  setState(() {});
+                },
+                controller: controller,
+              ),
+              Text(controller.text)
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Card buildCard(IconData iconData, String text) {
-    return Card(
-      elevation: 5,
-      child: Row(
-        children: [
-          Container(
-              margin: EdgeInsets.all(5),
-              child: Icon(
-                iconData,
-                color: Colors.green,
-              )),
-          Text(text)
-        ],
       ),
     );
   }
